@@ -1,0 +1,22 @@
+syntax = "proto3";
+package game.baseStruct;
+option go_package = "github.com/mikeqiao/easyStudy/game/baseStruct";
+
+message Attribute{
+    int32 keyID = 1; //属性ID（结构内）
+    string name = 2; //属性名称 （结构内唯一）
+    int32 attributeType = 3; //属性类型
+    string des = 4; //属性描述
+}
+
+message EntityStruct{
+    int32 keyID = 1; //结构ID
+    string name = 2; //结构名字
+    map<int32, Attribute> data = 3; //结构的属性
+}
+
+message AvatarStruct{
+    int32 keyID = 1; //avatarID
+    string name = 2; //avatar名字
+    map<int32, EntityStruct> data = 3; //avatar的属性表
+}

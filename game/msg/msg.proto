@@ -1,0 +1,13 @@
+syntax = "proto3";
+package game.msg;
+option go_package = "github.com/mikeqiao/easyStudy/game/msg";
+import "baseStruct.proto";
+
+//add a struct
+message NewStruct{
+    game.baseStruct.EntityStruct data = 1; //结构的属性
+}
+
+message AvatarStruct{
+    game.baseStruct.AvatarStruct  data = 1; ///avatar的属性
+}
