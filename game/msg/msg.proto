@@ -11,3 +11,39 @@ message NewStruct{
 message AvatarStruct{
     game.baseStruct.AvatarStruct  data = 1; ///avatar的属性
 }
+
+// login 创建账号登录请求
+message CreateAccountReq {
+  string account = 1;
+  string password = 2;
+  int32 accountType = 3;  //登录类型 1 游客登录 2 账号登录 3 第三方登录
+
+}
+// login 创建账号登录请求返回
+message CreateAccountRes {
+  int32 code = 4; // 1 成功  2 账号不合法  3 账号已经存在 4 密码不合法
+  string account = 1;                  //账号信息
+  string token = 2;                    // 验证 token
+  repeated ServerData serverList = 3;  // 服务器列表
+}
+//服务 器列表信息
+message ServerData {
+  string name = 1;                         //服务器名称
+  string serverId = 2;                     // 服务器id
+  repeated string gatewayAddr = 3;         // 网关地址
+  string recommendAddr = 4;                // 推荐网关地址
+  repeated RoleSynopsisData roleList = 5;  //本服务器创建的角色列表
+  repeated string talkAddr = 6;         // 社交服务器网关地址
+}
+//用于显示各个服务器创建的角色的简介信息
+message RoleSynopsisData {
+  string roleName = 1;   //角色名称
+  string roleId = 2;     //角色ID
+  int64 fightPower = 3;  //战力
+  int32 vip = 4;         // vip 等级
+  int32 roleType = 5;    //种族类型
+  string icon = 6;       //头像
+  int32 sex = 7;         //1 男性 2 女性
+  string serverId = 8;   //所在服务器ID
+  string account = 9; //所属账号
+}

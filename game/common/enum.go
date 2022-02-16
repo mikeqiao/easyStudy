@@ -30,17 +30,17 @@ const (
 	//int32
 	AttributeInt32 = 6
 	//uint32
-	AttributeUint32 =7
+	AttributeUint32 = 7
 	//int64
 	AttributeInt64 = 8
 	//uint64
 	AttributeUint64 = 9
 	//float32
-	AttributeFloat32= 10
+	AttributeFloat32 = 10
 	//float64
-	AttributeFloat64= 11
+	AttributeFloat64 = 11
 	//byte
-	AttributeByte= 12
+	AttributeByte = 12
 	//bool
-	AttributeBool= 13
+	AttributeBool = 13
 )

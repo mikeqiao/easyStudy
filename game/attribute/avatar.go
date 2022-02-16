@@ -16,7 +16,6 @@ func MakeNewAvatarStruct(avatarInfo *baseStruct.AvatarStruct) (code int32, errDe
 		errDes = fmt.Errorf("Nil  EntityStructManager!")
 		return
 	}
-
 	id := EntityStructManager.GetAvatarIdByName(avatarInfo.Name)
 	if 0 != id {
 		code = common.CodeInvalidParam

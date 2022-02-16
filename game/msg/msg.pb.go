@@ -116,6 +116,342 @@ func (x *AvatarStruct) GetData() *baseStruct.AvatarStruct {
 	return nil
 }
 
+// login 创建账号登录请求
+type CreateAccountReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Account     string `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Password    string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	AccountType int32  `protobuf:"varint,3,opt,name=accountType,proto3" json:"accountType,omitempty"` //登录类型 1 游客登录 2 账号登录 3 第三方登录
+}
+
+func (x *CreateAccountReq) Reset() {
+	*x = CreateAccountReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_msg_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAccountReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAccountReq) ProtoMessage() {}
+
+func (x *CreateAccountReq) ProtoReflect() protoreflect.Message {
+	mi := &file_msg_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAccountReq.ProtoReflect.Descriptor instead.
+func (*CreateAccountReq) Descriptor() ([]byte, []int) {
+	return file_msg_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateAccountReq) GetAccount() string {
+	if x != nil {
+		return x.Account
+	}
+	return ""
+}
+
+func (x *CreateAccountReq) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *CreateAccountReq) GetAccountType() int32 {
+	if x != nil {
+		return x.AccountType
+	}
+	return 0
+}
+
+// login 创建账号登录请求返回
+type CreateAccountRes struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code       int32         `protobuf:"varint,4,opt,name=code,proto3" json:"code,omitempty"`            // 1 成功  2 账号不合法  3 账号已经存在 4 密码不合法
+	Account    string        `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`       //账号信息
+	Token      string        `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`           // 验证 token
+	ServerList []*ServerData `protobuf:"bytes,3,rep,name=serverList,proto3" json:"serverList,omitempty"` // 服务器列表
+}
+
+func (x *CreateAccountRes) Reset() {
+	*x = CreateAccountRes{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_msg_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAccountRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAccountRes) ProtoMessage() {}
+
+func (x *CreateAccountRes) ProtoReflect() protoreflect.Message {
+	mi := &file_msg_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAccountRes.ProtoReflect.Descriptor instead.
+func (*CreateAccountRes) Descriptor() ([]byte, []int) {
+	return file_msg_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateAccountRes) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *CreateAccountRes) GetAccount() string {
+	if x != nil {
+		return x.Account
+	}
+	return ""
+}
+
+func (x *CreateAccountRes) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *CreateAccountRes) GetServerList() []*ServerData {
+	if x != nil {
+		return x.ServerList
+	}
+	return nil
+}
+
+//服务 器列表信息
+type ServerData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name          string              `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`                   //服务器名称
+	ServerId      string              `protobuf:"bytes,2,opt,name=serverId,proto3" json:"serverId,omitempty"`           // 服务器id
+	GatewayAddr   []string            `protobuf:"bytes,3,rep,name=gatewayAddr,proto3" json:"gatewayAddr,omitempty"`     // 网关地址
+	RecommendAddr string              `protobuf:"bytes,4,opt,name=recommendAddr,proto3" json:"recommendAddr,omitempty"` // 推荐网关地址
+	RoleList      []*RoleSynopsisData `protobuf:"bytes,5,rep,name=roleList,proto3" json:"roleList,omitempty"`           //本服务器创建的角色列表
+	TalkAddr      []string            `protobuf:"bytes,6,rep,name=talkAddr,proto3" json:"talkAddr,omitempty"`           // 社交服务器网关地址
+}
+
+func (x *ServerData) Reset() {
+	*x = ServerData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_msg_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServerData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServerData) ProtoMessage() {}
+
+func (x *ServerData) ProtoReflect() protoreflect.Message {
+	mi := &file_msg_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServerData.ProtoReflect.Descriptor instead.
+func (*ServerData) Descriptor() ([]byte, []int) {
+	return file_msg_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ServerData) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ServerData) GetServerId() string {
+	if x != nil {
+		return x.ServerId
+	}
+	return ""
+}
+
+func (x *ServerData) GetGatewayAddr() []string {
+	if x != nil {
+		return x.GatewayAddr
+	}
+	return nil
+}
+
+func (x *ServerData) GetRecommendAddr() string {
+	if x != nil {
+		return x.RecommendAddr
+	}
+	return ""
+}
+
+func (x *ServerData) GetRoleList() []*RoleSynopsisData {
+	if x != nil {
+		return x.RoleList
+	}
+	return nil
+}
+
+func (x *ServerData) GetTalkAddr() []string {
+	if x != nil {
+		return x.TalkAddr
+	}
+	return nil
+}
+
+//用于显示各个服务器创建的角色的简介信息
+type RoleSynopsisData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RoleName   string `protobuf:"bytes,1,opt,name=roleName,proto3" json:"roleName,omitempty"`      //角色名称
+	RoleId     string `protobuf:"bytes,2,opt,name=roleId,proto3" json:"roleId,omitempty"`          //角色ID
+	FightPower int64  `protobuf:"varint,3,opt,name=fightPower,proto3" json:"fightPower,omitempty"` //战力
+	Vip        int32  `protobuf:"varint,4,opt,name=vip,proto3" json:"vip,omitempty"`               // vip 等级
+	RoleType   int32  `protobuf:"varint,5,opt,name=roleType,proto3" json:"roleType,omitempty"`     //种族类型
+	Icon       string `protobuf:"bytes,6,opt,name=icon,proto3" json:"icon,omitempty"`              //头像
+	Sex        int32  `protobuf:"varint,7,opt,name=sex,proto3" json:"sex,omitempty"`               //1 男性 2 女性
+	ServerId   string `protobuf:"bytes,8,opt,name=serverId,proto3" json:"serverId,omitempty"`      //所在服务器ID
+	Account    string `protobuf:"bytes,9,opt,name=account,proto3" json:"account,omitempty"`        //所属账号
+}
+
+func (x *RoleSynopsisData) Reset() {
+	*x = RoleSynopsisData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_msg_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RoleSynopsisData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RoleSynopsisData) ProtoMessage() {}
+
+func (x *RoleSynopsisData) ProtoReflect() protoreflect.Message {
+	mi := &file_msg_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RoleSynopsisData.ProtoReflect.Descriptor instead.
+func (*RoleSynopsisData) Descriptor() ([]byte, []int) {
+	return file_msg_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RoleSynopsisData) GetRoleName() string {
+	if x != nil {
+		return x.RoleName
+	}
+	return ""
+}
+
+func (x *RoleSynopsisData) GetRoleId() string {
+	if x != nil {
+		return x.RoleId
+	}
+	return ""
+}
+
+func (x *RoleSynopsisData) GetFightPower() int64 {
+	if x != nil {
+		return x.FightPower
+	}
+	return 0
+}
+
+func (x *RoleSynopsisData) GetVip() int32 {
+	if x != nil {
+		return x.Vip
+	}
+	return 0
+}
+
+func (x *RoleSynopsisData) GetRoleType() int32 {
+	if x != nil {
+		return x.RoleType
+	}
+	return 0
+}
+
+func (x *RoleSynopsisData) GetIcon() string {
+	if x != nil {
+		return x.Icon
+	}
+	return ""
+}
+
+func (x *RoleSynopsisData) GetSex() int32 {
+	if x != nil {
+		return x.Sex
+	}
+	return 0
+}
+
+func (x *RoleSynopsisData) GetServerId() string {
+	if x != nil {
+		return x.ServerId
+	}
+	return ""
+}
+
+func (x *RoleSynopsisData) GetAccount() string {
+	if x != nil {
+		return x.Account
+	}
+	return ""
+}
+
 var File_msg_proto protoreflect.FileDescriptor
 
 var file_msg_proto_rawDesc = []byte{
@@ -129,10 +465,55 @@ var file_msg_proto_rawDesc = []byte{
 	0x72, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x12, 0x31, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x62, 0x61, 0x73,
 	0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x2e, 0x41, 0x76, 0x61, 0x74, 0x61, 0x72, 0x53, 0x74,
-	0x72, 0x75, 0x63, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x28, 0x5a, 0x26, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x69, 0x6b, 0x65, 0x71, 0x69, 0x61,
-	0x6f, 0x2f, 0x65, 0x61, 0x73, 0x79, 0x53, 0x74, 0x75, 0x64, 0x79, 0x2f, 0x67, 0x61, 0x6d, 0x65,
-	0x2f, 0x6d, 0x73, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x75, 0x63, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x6a, 0x0a, 0x10, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x12, 0x18,
+	0x0a, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54,
+	0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x22, 0x8c, 0x01, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x63,
+	0x6f, 0x64, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12,
+	0x18, 0x0a, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x12,
+	0x34, 0x0a, 0x0a, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x6d, 0x73, 0x67, 0x2e, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x0a, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x4c, 0x69, 0x73, 0x74, 0x22, 0xd8, 0x01, 0x0a, 0x0a, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x44, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x67, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x41,
+	0x64, 0x64, 0x72, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x67, 0x61, 0x74, 0x65, 0x77,
+	0x61, 0x79, 0x41, 0x64, 0x64, 0x72, 0x12, 0x24, 0x0a, 0x0d, 0x72, 0x65, 0x63, 0x6f, 0x6d, 0x6d,
+	0x65, 0x6e, 0x64, 0x41, 0x64, 0x64, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x72,
+	0x65, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x64, 0x41, 0x64, 0x64, 0x72, 0x12, 0x36, 0x0a, 0x08,
+	0x72, 0x6f, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x6d, 0x73, 0x67, 0x2e, 0x52, 0x6f, 0x6c, 0x65, 0x53, 0x79,
+	0x6e, 0x6f, 0x70, 0x73, 0x69, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x08, 0x72, 0x6f, 0x6c, 0x65,
+	0x4c, 0x69, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x61, 0x6c, 0x6b, 0x41, 0x64, 0x64, 0x72,
+	0x18, 0x06, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08, 0x74, 0x61, 0x6c, 0x6b, 0x41, 0x64, 0x64, 0x72,
+	0x22, 0xf0, 0x01, 0x0a, 0x10, 0x52, 0x6f, 0x6c, 0x65, 0x53, 0x79, 0x6e, 0x6f, 0x70, 0x73, 0x69,
+	0x73, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1a, 0x0a, 0x08, 0x72, 0x6f, 0x6c, 0x65, 0x4e, 0x61, 0x6d,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x72, 0x6f, 0x6c, 0x65, 0x4e, 0x61, 0x6d,
+	0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x6f, 0x6c, 0x65, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x72, 0x6f, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x66, 0x69, 0x67,
+	0x68, 0x74, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x66,
+	0x69, 0x67, 0x68, 0x74, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x76, 0x69, 0x70,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x76, 0x69, 0x70, 0x12, 0x1a, 0x0a, 0x08, 0x72,
+	0x6f, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x72,
+	0x6f, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x69, 0x63, 0x6f, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x73,
+	0x65, 0x78, 0x18, 0x07, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x73, 0x65, 0x78, 0x12, 0x1a, 0x0a,
+	0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x42, 0x28, 0x5a, 0x26, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x6d, 0x69, 0x6b, 0x65, 0x71, 0x69, 0x61, 0x6f, 0x2f, 0x65, 0x61, 0x73, 0x79, 0x53,
+	0x74, 0x75, 0x64, 0x79, 0x2f, 0x67, 0x61, 0x6d, 0x65, 0x2f, 0x6d, 0x73, 0x67, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -147,21 +528,27 @@ func file_msg_proto_rawDescGZIP() []byte {
 	return file_msg_proto_rawDescData
 }
 
-var file_msg_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_msg_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_msg_proto_goTypes = []interface{}{
 	(*NewStruct)(nil),               // 0: game.msg.NewStruct
 	(*AvatarStruct)(nil),            // 1: game.msg.AvatarStruct
-	(*baseStruct.EntityStruct)(nil), // 2: game.baseStruct.EntityStruct
-	(*baseStruct.AvatarStruct)(nil), // 3: game.baseStruct.AvatarStruct
+	(*CreateAccountReq)(nil),        // 2: game.msg.CreateAccountReq
+	(*CreateAccountRes)(nil),        // 3: game.msg.CreateAccountRes
+	(*ServerData)(nil),              // 4: game.msg.ServerData
+	(*RoleSynopsisData)(nil),        // 5: game.msg.RoleSynopsisData
+	(*baseStruct.EntityStruct)(nil), // 6: game.baseStruct.EntityStruct
+	(*baseStruct.AvatarStruct)(nil), // 7: game.baseStruct.AvatarStruct
 }
 var file_msg_proto_depIdxs = []int32{
-	2, // 0: game.msg.NewStruct.data:type_name -> game.baseStruct.EntityStruct
-	3, // 1: game.msg.AvatarStruct.data:type_name -> game.baseStruct.AvatarStruct
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 0: game.msg.NewStruct.data:type_name -> game.baseStruct.EntityStruct
+	7, // 1: game.msg.AvatarStruct.data:type_name -> game.baseStruct.AvatarStruct
+	4, // 2: game.msg.CreateAccountRes.serverList:type_name -> game.msg.ServerData
+	5, // 3: game.msg.ServerData.roleList:type_name -> game.msg.RoleSynopsisData
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_msg_proto_init() }
@@ -194,6 +581,54 @@ func file_msg_proto_init() {
 				return nil
 			}
 		}
+		file_msg_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateAccountReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_msg_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateAccountRes); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_msg_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServerData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_msg_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RoleSynopsisData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -201,7 +636,7 @@ func file_msg_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_msg_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
